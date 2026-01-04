@@ -1,0 +1,38 @@
+[
+  {
+    "id": "github",
+    "label": {
+      "zh": "Github",
+      "en": "Github"
+    },
+    "href": "https://github.com/WallBreakerNO4",
+    "display": "github.com/WallBreakerNO4"
+  },
+  {
+    "id": "bilibili",
+    "label": {
+      "zh": "bilibili",
+      "en": "bilibili"
+    },
+    "href": "https://space.bilibili.com/28978056",
+    "display": "space.bilibili.com"
+  },
+  {
+    "id": "steam",
+    "label": {
+      "zh": "Steam",
+      "en": "Steam"
+    },
+    "href": "https://steamcommunity.com/profiles/76561198415147997/",
+    "display": "steamcommunity.com"
+  },
+  {
+    "id": "blog",
+    "label": {
+      "zh": "博客",
+      "en": "Blog"
+    },
+    "href": "https://blog.wall-breaker-no4.xyz/",
+    "display": "blog.wall-breaker-no4.xyz"
+  }
+]

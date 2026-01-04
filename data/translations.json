@@ -1,0 +1,18 @@
+{
+  "zh": {
+    "name": "第四号破壁者",
+    "icp": "粤ICP备2025491177号-1",
+    "langBtn": "EN",
+    "themeLight": "Light",
+    "themeDark": "Dark",
+    "htmlLang": "zh"
+  },
+  "en": {
+    "name": "WallBreakerNO4",
+    "icp": "粤ICP备2025491177号-1",
+    "langBtn": "中",
+    "themeLight": "Light",
+    "themeDark": "Dark",
+    "htmlLang": "en"
+  }
+}
