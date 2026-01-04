@@ -1,36 +1,82 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# wbo4.xyz
 
-## Getting Started
+一个极简的个人主页/链接导航站点，支持中英文切换与明暗主题切换，内容由本地 JSON 配置驱动。
 
-First, run the development server:
+## 功能特性
+
+- 中英文切换：语言文案集中在 `data/translations.json`
+- 明暗主题切换：自动读取系统主题偏好并持久化到本地存储
+- 可配置链接列表：链接数据集中在 `data/links.json`
+- 纯前端静态页面，适合部署到任意静态/Node 托管环境
+
+## 技术栈
+
+- Next.js（App Router）
+- React
+- TypeScript
+- Tailwind CSS（通过 PostCSS 集成）
+
+## 快速开始
+
+安装依赖：
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+pnpm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+启动开发服务器：
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+pnpm dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+生产构建与启动：
 
-## Learn More
+```bash
+pnpm build
+pnpm start
+```
 
-To learn more about Next.js, take a look at the following resources:
+代码检查：
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+pnpm lint
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+默认开发地址：`http://localhost:3000`
 
-## Deploy on Vercel
+## 项目结构
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```text
+app/
+  page.tsx            # 页面入口
+data/
+  links.json          # 链接列表数据
+  translations.json   # 中英文文案
+public/               # 静态资源
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 配置说明
+
+### 链接数据
+
+编辑 `data/links.json`，每条链接包含：
+
+- `id`: 唯一标识
+- `label`: 中英文标题
+- `href`: 跳转地址
+- `display`: 展示用域名/短文本
+
+### 文案与站点信息
+
+编辑 `data/translations.json`，可修改：
+
+- 站点名称（`name`）
+- ICP 备案号展示（`icp`）
+- 语言/主题按钮文本
+- `<html lang>` 属性
+
+## 开发提示
+
+- 页面逻辑在 `app/page.tsx` 中实现
+- 语言与主题使用 `localStorage` 持久化，并通过事件触发刷新
