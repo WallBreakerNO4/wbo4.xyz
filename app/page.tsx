@@ -85,6 +85,7 @@ export default function Home() {
   );
   const currentLang: Lang = storedLang === "en" ? "en" : "zh";
   const isDark: boolean = storedTheme === "dark";
+  const currentTheme: Theme = isDark ? "dark" : "light";
 
   useEffect(() => {
     const root = document.documentElement;
@@ -99,39 +100,93 @@ export default function Home() {
     document.documentElement.lang = translations[currentLang].htmlLang;
   }, [currentLang]);
 
-  const toggleTheme = () => {
-    const next: Theme = isDark ? "light" : "dark";
+  const setTheme = (next: Theme) => {
+    if (next === currentTheme) {
+      return;
+    }
     localStorage.setItem("theme", next);
     emitStorage();
   };
 
-  const toggleLanguage = () => {
-    const next: Lang = currentLang === "zh" ? "en" : "zh";
+  const setLanguage = (next: Lang) => {
+    if (next === currentLang) {
+      return;
+    }
     localStorage.setItem("lang", next);
     emitStorage();
   };
 
   const t = translations[currentLang];
-  const themeBtnText = isDark ? t.themeLight : t.themeDark;
   const year = new Date().getFullYear();
 
   return (
     <div className="max-w-xl mx-auto px-6 min-h-screen flex flex-col">
-      <nav className="absolute top-0 right-0 p-6 md:p-10 flex gap-4 text-sm font-mono z-50">
-        <button
-          type="button"
-          onClick={toggleLanguage}
-          className="hover:underline opacity-60 hover:opacity-100 transition-opacity"
-        >
-          {t.langBtn}
-        </button>
-        <button
-          type="button"
-          onClick={toggleTheme}
-          className="hover:underline opacity-60 hover:opacity-100 transition-opacity"
-        >
-          {themeBtnText}
-        </button>
+      <nav className="absolute top-0 right-0 p-6 md:p-10 flex items-center gap-4 text-xs font-mono z-50">
+        <div className="relative inline-grid grid-cols-2 items-center pb-1">
+          <span
+            aria-hidden="true"
+            className={`absolute bottom-0 left-0 h-px w-1/2 bg-black dark:bg-white transition-transform duration-300 ease-out ${
+              currentLang === "zh" ? "translate-x-0" : "translate-x-full"
+            }`}
+          />
+          <button
+            type="button"
+            onClick={() => setLanguage("zh")}
+            aria-pressed={currentLang === "zh"}
+            className={`relative w-8 text-center transition-opacity ${
+              currentLang === "zh"
+                ? "text-black dark:text-white"
+                : "opacity-60 hover:opacity-100"
+            }`}
+          >
+            中
+          </button>
+          <button
+            type="button"
+            onClick={() => setLanguage("en")}
+            aria-pressed={currentLang === "en"}
+            className={`relative w-8 text-center transition-opacity ${
+              currentLang === "en"
+                ? "text-black dark:text-white"
+                : "opacity-60 hover:opacity-100"
+            }`}
+          >
+            EN
+          </button>
+        </div>
+
+        <div className="relative inline-grid grid-cols-2 items-center pb-1">
+          <span
+            aria-hidden="true"
+            className={`absolute bottom-0 left-0 h-px w-1/2 bg-black dark:bg-white transition-transform duration-300 ease-out ${
+              currentTheme === "light" ? "translate-x-0" : "translate-x-full"
+            }`}
+          />
+          <button
+            type="button"
+            onClick={() => setTheme("light")}
+            aria-pressed={currentTheme === "light"}
+            className={`relative w-12 text-center transition-opacity ${
+              currentTheme === "light"
+                ? "text-black dark:text-white"
+                : "opacity-60 hover:opacity-100"
+            }`}
+          >
+            {t.themeLight}
+          </button>
+          <button
+            type="button"
+            onClick={() => setTheme("dark")}
+            aria-pressed={currentTheme === "dark"}
+            className={`relative w-12 text-center transition-opacity ${
+              currentTheme === "dark"
+                ? "text-black dark:text-white"
+                : "opacity-60 hover:opacity-100"
+            }`}
+          >
+            {t.themeDark}
+          </button>
+        </div>
       </nav>
 
       <header className="mt-32 mb-12">
